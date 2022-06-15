@@ -1,14 +1,16 @@
-use dotenv_codegen::dotenv;
+use developer_search::make_searchpage_url;
 
-#[tokio::main]
-async fn main() {
-    let api_key = dotenv!("SEARCH_API_KEY");
-    let context_id = dotenv!("SEARCH_ENGINE_ID");
+fn main() -> Result<(), std::io::Error> {
+    let args: Vec<String> = std::env::args().collect();
 
-    let url_string = format!(
-        "https://www.googleapis.com/customsearch/v1?key={}&cx={}",
-        api_key, context_id
-    );
+    if args.len() == 1 {
+        println!("Usage: developer-search [search-string]");
+        std::process::exit(1);
+    }
 
+    let search_query = &args[1..].join(" ");
 
+    webbrowser::open(&make_searchpage_url(search_query))?;
+
+    Ok(())
 }
