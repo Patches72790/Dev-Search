@@ -4,7 +4,7 @@ fn main() -> Result<(), std::io::Error> {
     let args: Vec<String> = std::env::args().collect();
 
     if args.len() == 1 {
-        println!("Usage: developer-search [search-string]");
+        println!("Usage: dev[eloper]-search [search-string]");
         std::process::exit(1);
     }
 
