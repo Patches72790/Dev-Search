@@ -1,8 +1,9 @@
 #!/bin/bash
 
 echo "Building dev-search executable..."
-[ -e $(which cargo) ] && cargo build --release || echo "Cargo utility not found. Exiting..." && exit 2
+[ -ne $(which cargo) ] && echo "Cargo utility not found. Exiting..." && exit 2
 
+cargo build --release
 echo "Checking for $HOME/.local/bin directory..."
 [ -e $HOME/.local/bin ] || mkdir -p $HOME/.local/bin
 
